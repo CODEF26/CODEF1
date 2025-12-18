@@ -3,463 +3,911 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>نظام إدارة المصورين والوكالات | وكالة ميديا</title>
+  <meta name="description" content="نظام سحابي للمصورين ووكالات الدعاية: حجوزات، مالية، فواتير، تذكيرات واتساب، وإدارة فريق."/>
+  <title>Landing Page | نظام للمصورين</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- AOS (Scroll Animations) -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
   <style>
     :root{
-      --primary:#014979;
-      --primaryDark:#01345c;
-      --gold:#b19738;
-      --bg:#f5f7fb;
-      --card:#ffffff;
-      --text:#0f172a;
-      --muted:#6b7280;
-      --border:rgba(15,23,42,.10);
-      --shadow:0 18px 45px rgba(15,23,42,.08);
-      --radius:22px;
+      --bg0:#050814;
+      --bg1:#0b1220;
+      --card:#0a1022;
+      --card2:#0b1530;
+      --text:#eaf0ff;
+      --muted:#a6b3d1;
+      --line:rgba(255,255,255,.10);
+      --green:#22c55e;
+      --green2:#16a34a;
+      --red:#ef4444;
+      --gold:#C9A86A;
+      --shadow: 0 18px 60px rgba(0,0,0,.35);
+      --radius: 18px;
     }
+
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family:"Tajawal",system-ui,-apple-system,Segoe UI,Arial;
-      background:var(--bg);
+      font-family:'Tajawal',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(900px 450px at 90% -10%, rgba(34,197,94,.22), transparent 60%),
+        radial-gradient(700px 420px at 10% 0%, rgba(201,168,106,.16), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
       color:var(--text);
-      line-height:1.7;
+      overflow-x:hidden;
     }
-    a{color:inherit;text-decoration:none}
-    .container{width:min(1150px,92%);margin-inline:auto}
 
-    /* ===== NAV ===== */
+    a{color:inherit}
+    .container{max-width:1100px;margin:auto;padding:0 18px}
+
+    /* Top Nav */
     .nav{
       position:sticky; top:0; z-index:50;
+      background: rgba(5,8,20,.58);
       backdrop-filter: blur(10px);
-      background: rgba(245,247,251,.78);
-      border-bottom:1px solid rgba(15,23,42,.08);
+      border-bottom:1px solid var(--line);
     }
     .nav-inner{
       display:flex; align-items:center; justify-content:space-between;
-      padding:14px 0;
-      gap:14px;
+      padding:12px 0;
+      gap:12px;
     }
     .brand{
       display:flex; align-items:center; gap:10px;
-      font-weight:800;
+      font-weight:900;
+      letter-spacing:.2px;
     }
-    .logo{
-      width:42px; height:42px; border-radius:14px;
-      background:linear-gradient(135deg,var(--primary),var(--gold));
-      box-shadow:0 10px 25px rgba(1,73,121,.25);
+    .brand .logo{
+      width:38px; height:38px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(34,197,94,.9), rgba(201,168,106,.85));
+      box-shadow: var(--shadow);
+      position:relative;
     }
-    .nav-actions{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
-    .btn{
-      border:0; cursor:pointer;
-      padding:11px 16px;
-      border-radius:999px;
-      font-weight:700;
-      font-size:14px;
-      display:inline-flex; align-items:center; gap:8px;
-    }
-    .btn-primary{
-      background:linear-gradient(135deg,var(--primary),var(--gold));
-      color:#fff;
-      box-shadow:0 14px 30px rgba(1,73,121,.18);
-    }
-    .btn-ghost{
-      background:transparent;
-      border:1px solid rgba(15,23,42,.14);
-      color:var(--text);
+    .brand .logo:after{
+      content:"";
+      position:absolute; inset:9px;
+      border-radius:10px;
+      border:1px solid rgba(0,0,0,.25);
+      background: rgba(0,0,0,.08);
     }
 
-    /* ===== HERO ===== */
+    .nav-links{
+      display:none;
+      gap:18px;
+      font-weight:700;
+      color:var(--muted);
+    }
+    .nav-links a{ text-decoration:none; opacity:.95 }
+    .nav-links a:hover{ color:var(--text) }
+
+    .nav-actions{
+      display:flex; gap:10px; align-items:center;
+    }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:12px 16px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      text-decoration:none;
+      font-weight:800;
+      transition:.2s transform, .2s opacity, .2s background;
+      user-select:none;
+      cursor:pointer;
+    }
+    .btn:hover{ transform: translateY(-1px); }
+    .btn:active{ transform: translateY(0px); opacity:.92; }
+
+    .btn-primary{
+      background: linear-gradient(135deg, var(--green), var(--green2));
+      color:#06110a;
+      border: none;
+      box-shadow: 0 16px 40px rgba(34,197,94,.22);
+    }
+    .btn-ghost{
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+    }
+
+    /* Hero */
     .hero{
-      padding:44px 0 26px;
+      padding: 56px 0 24px;
+      position:relative;
     }
     .hero-grid{
       display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:22px;
-      align-items:stretch;
-    }
-    .hero-card{
-      background:linear-gradient(135deg,#00243f, #014979, #026aa7);
-      color:#fff;
-      border-radius: var(--radius);
-      padding:28px;
-      position:relative;
-      overflow:hidden;
-      box-shadow:0 22px 60px rgba(1,73,121,.25);
-    }
-    .hero-card:before{
-      content:"";
-      position:absolute; inset:-80px -120px auto auto;
-      width:260px; height:260px; border-radius:999px;
-      background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.22), transparent 65%);
-      opacity:.85;
-      transform: rotate(15deg);
-    }
-    .hero h1{
-      margin:0 0 10px;
-      font-size: clamp(26px, 3vw, 38px);
-      font-weight:900;
-      letter-spacing:.1px;
-      position:relative;
-    }
-    .hero p{
-      margin:0 0 18px;
-      color:rgba(248,250,252,.9);
-      max-width: 54ch;
-      position:relative;
-      font-weight:500;
-    }
-    .badges{
-      display:flex; gap:10px; flex-wrap:wrap;
-      margin-bottom:18px;
-      position:relative;
-    }
-    .badge{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 12px;
-      border-radius:999px;
-      font-size:13px;
-      background:rgba(255,255,255,.14);
-      border:1px solid rgba(255,255,255,.18);
-      color:#fff;
-    }
-    .hero-cta{display:flex; gap:10px; flex-wrap:wrap; position:relative}
-    .btn-white{
-      background:#fff;
-      color:var(--primaryDark);
-      box-shadow:0 18px 40px rgba(0,0,0,.12);
-    }
-    .btn-outline-white{
-      background:transparent;
-      color:#fff;
-      border:1px solid rgba(255,255,255,.55);
+      grid-template-columns: 1fr;
+      gap: 22px;
+      align-items:center;
     }
 
-    .hero-shot{
-      background:var(--card);
-      border-radius: var(--radius);
-      border:1px solid rgba(15,23,42,.10);
-      box-shadow: var(--shadow);
-      padding:12px;
-      display:flex; flex-direction:column;
+    .pill{
+      display:inline-flex;
       gap:10px;
-      overflow:hidden;
+      align-items:center;
+      padding:10px 14px;
+      border-radius:999px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-weight:700;
+      width: fit-content;
     }
-    .shot-top{
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-      padding:8px 10px;
-    }
-    .shot-title{font-weight:800}
-    .shot-sub{font-size:12.5px;color:var(--muted)}
-    .shot-img{
-      width:100%;
-      border-radius:18px;
-      border:1px solid rgba(15,23,42,.10);
-      overflow:hidden;
-      background:#fff;
-    }
-    .shot-img img{width:100%; display:block}
+    .pill i{ color: var(--gold); }
 
-    /* ===== SECTIONS ===== */
-    section{padding:28px 0}
-    .section-head{
-      display:flex; align-items:end; justify-content:space-between; gap:14px; flex-wrap:wrap;
-      margin-bottom:14px;
+    .hero h1{
+      margin: 12px 0 10px;
+      font-size: 2.05rem;
+      line-height: 1.45;
+      letter-spacing:.2px;
+      font-weight: 900;
     }
-    .section-head h2{
+    .hero h1 .accent{ color: var(--green); }
+    .hero p{
       margin:0;
-      font-size:22px;
-      font-weight:900;
-    }
-    .section-head p{
-      margin:0;
-      color:var(--muted);
-      max-width:70ch;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.9;
     }
 
-    .grid-3{
-      display:grid;
-      grid-template-columns: repeat(3,1fr);
-      gap:14px;
+    .hero-actions{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top: 18px;
+      align-items:center;
     }
-    .grid-2{
-      display:grid;
-      grid-template-columns: repeat(2,1fr);
-      gap:14px;
-      align-items:stretch;
-    }
-    .card{
-      background:var(--card);
-      border:1px solid rgba(15,23,42,.10);
-      border-radius: var(--radius);
+
+    /* phone mock */
+    .phone{
+      border-radius: 26px;
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
       box-shadow: var(--shadow);
-      padding:16px;
       overflow:hidden;
+      position:relative;
+      transform: translateZ(0);
+    }
+    .phone-top{
+      display:flex; justify-content:space-between; align-items:center;
+      padding: 12px 14px;
+      background: rgba(0,0,0,.18);
+      border-bottom:1px solid rgba(255,255,255,.08);
+      color: rgba(234,240,255,.82);
+      font-weight:800;
+    }
+    .phone-top .dots{
+      display:flex; gap:6px; align-items:center;
+    }
+    .dot{ width:8px; height:8px; border-radius:50%; background: rgba(255,255,255,.18); }
+    .phone-img{
+      width:100%;
+      height: 420px;
+      object-fit: cover;
+      display:block;
+      filter: saturate(1.08) contrast(1.02);
+    }
+
+    /* Sections */
+    .section{
+      padding: 48px 0;
+    }
+    .section-title{
+      display:flex; flex-direction:column; gap:10px;
+      margin-bottom: 18px;
+    }
+    .section-title h2{
+      margin:0;
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing:.2px;
+    }
+    .section-title p{
+      margin:0;
+      color: var(--muted);
+      line-height:1.9;
+    }
+
+    /* Problem cards */
+    .problems{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .problem{
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+      padding: 16px;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--line);
+    }
+    .problem .ico{
+      width:44px; height:44px; border-radius:14px;
+      display:grid; place-items:center;
+      background: rgba(239,68,68,.12);
+      border: 1px solid rgba(239,68,68,.25);
+      flex: 0 0 auto;
+    }
+    .problem .ico i{ color: var(--red); font-size: 18px; }
+    .problem h3{
+      margin:0 0 4px;
+      font-weight: 900;
+      font-size: 1.05rem;
+    }
+    .problem p{
+      margin:0;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    /* Features */
+    .features{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 16px;
     }
     .feature{
-      display:flex; gap:12px;
-      align-items:flex-start;
+      padding: 18px;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border: 1px solid var(--line);
+      position:relative;
+      overflow:hidden;
     }
-    .icon{
+    .feature:before{
+      content:"";
+      position:absolute;
+      width:200px; height:200px;
+      right:-120px; top:-120px;
+      background: radial-gradient(circle, rgba(34,197,94,.16), transparent 60%);
+    }
+    .feature .head{
+      display:flex; gap:12px; align-items:center;
+      margin-bottom: 10px;
+    }
+    .feature .icon{
       width:46px; height:46px; border-radius:16px;
       display:grid; place-items:center;
-      background: rgba(1,73,121,.10);
-      color: var(--primary);
-      font-weight:900;
-      flex:0 0 auto;
+      background: rgba(34,197,94,.12);
+      border: 1px solid rgba(34,197,94,.25);
+      flex: 0 0 auto;
     }
-    .feature h3{margin:0 0 4px;font-size:16px;font-weight:900}
-    .feature p{margin:0;color:var(--muted);font-size:13.5px}
+    .feature .icon i{ color: var(--green); font-size: 18px; }
+    .feature h3{ margin:0; font-weight: 900; }
+    .feature p{ margin:8px 0 0; color: var(--muted); line-height:1.9; }
 
-    .shot-card{
-      padding:14px;
+    /* Stats */
+    .stats{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 18px;
     }
-    .shot-card h3{margin:0 0 8px;font-weight:900;font-size:16px}
-    .shot-card p{margin:0 0 12px;color:var(--muted);font-size:13.5px}
-    .shot-card img{
-      width:100%;
-      border-radius:18px;
-      border:1px solid rgba(15,23,42,.10);
-      display:block;
-    }
-
-    /* ===== PRICING CTA ===== */
-    .cta{
-      background: linear-gradient(135deg, rgba(1,73,121,.10), rgba(177,151,56,.10));
-      border:1px solid rgba(15,23,42,.08);
+    .stat{
+      padding: 16px;
       border-radius: var(--radius);
-      padding:18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      flex-wrap:wrap;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--line);
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px;
+    }
+    .stat .label{ color: var(--muted); font-weight: 800; }
+    .stat .num{ font-weight: 900; font-size: 1.35rem; color: var(--text); }
+
+    /* Gallery slider */
+    .gallery{
+      position:relative;
+      margin-top: 18px;
+      border-radius: 22px;
+      border:1px solid var(--line);
+      overflow:hidden;
+      background: rgba(255,255,255,.02);
       box-shadow: var(--shadow);
     }
-    .cta strong{font-size:18px;font-weight:900}
-    .cta span{color:var(--muted);display:block;margin-top:4px;font-size:13.5px}
-
-    /* ===== FOOTER ===== */
-    footer{
-      padding:24px 0 40px;
-      color:var(--muted);
-      font-size:13px;
+    .slides{
+      display:flex;
+      transition: transform .45s ease;
+      will-change: transform;
     }
-    .footer-row{
-      display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
-      border-top:1px solid rgba(15,23,42,.08);
-      padding-top:14px;
+    .slide{
+      min-width:100%;
+      position:relative;
+    }
+    .slide img{
+      width:100%; height: 430px; object-fit: cover; display:block;
+      filter: contrast(1.03) saturate(1.06);
+    }
+    .slide .cap{
+      position:absolute; right: 14px; left: 14px; bottom: 14px;
+      padding: 14px 14px;
+      border-radius: 16px;
+      background: rgba(0,0,0,.45);
+      border:1px solid rgba(255,255,255,.14);
+      backdrop-filter: blur(6px);
+    }
+    .cap h4{ margin:0 0 4px; font-weight: 900; }
+    .cap p{ margin:0; color: rgba(234,240,255,.82); line-height:1.8; }
+
+    .g-controls{
+      position:absolute; inset: 0;
+      pointer-events:none;
+    }
+    .g-btn{
+      pointer-events:auto;
+      position:absolute; top:50%;
+      transform: translateY(-50%);
+      width:44px; height:44px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.35);
+      color: var(--text);
+      display:grid; place-items:center;
+      cursor:pointer;
+      user-select:none;
+    }
+    .g-btn:hover{ background: rgba(0,0,0,.45); }
+    .g-prev{ left: 12px; }
+    .g-next{ right: 12px; }
+
+    .dotsbar{
+      display:flex; justify-content:center; gap:8px;
+      padding: 12px;
+      background: rgba(0,0,0,.18);
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+    .gd{
+      width:9px; height:9px; border-radius: 50%;
+      background: rgba(255,255,255,.22);
+      cursor:pointer;
+    }
+    .gd.active{ background: rgba(34,197,94,.95); }
+
+    /* FAQ */
+    .faq{
+      margin-top: 18px;
+      display:grid;
+      gap: 10px;
+    }
+    details{
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px 14px;
+    }
+    summary{
+      cursor:pointer;
+      font-weight: 900;
+      list-style:none;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    summary .q{ color: var(--text); }
+    summary .ic{ color: var(--muted); transition:.2s transform; }
+    details[open] summary .ic{ transform: rotate(180deg); }
+    details p{
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.9;
     }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 980px){
-      .hero-grid{grid-template-columns:1fr}
-      .grid-3{grid-template-columns:1fr}
-      .grid-2{grid-template-columns:1fr}
+    /* CTA */
+    .cta{
+      padding: 28px 18px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(34,197,94,.95), rgba(22,163,74,.92));
+      color:#06110a;
+      border: 1px solid rgba(0,0,0,.18);
+      box-shadow: 0 18px 55px rgba(34,197,94,.22);
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      align-items:center;
+      text-align:center;
+    }
+    .cta h2{ margin:0; font-weight: 950; }
+    .cta p{ margin:0; font-weight: 800; opacity:.95; }
+    .cta .row{
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top: 10px;
+    }
+    .cta .btn{ border:none; }
+
+    /* WhatsApp floating */
+    .wa-float{
+      position: fixed;
+      left: 16px;
+      bottom: 16px;
+      z-index: 80;
+      display:flex; align-items:center; gap:10px;
+      text-decoration:none;
+      background: rgba(0,0,0,.55);
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 999px;
+      padding: 12px 14px;
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
+    .wa-float i{
+      color: #25D366;
+      font-size: 20px;
+    }
+    .wa-float span{
+      color: var(--text);
+      font-weight: 900;
+      display:none;
+    }
+
+    /* Footer */
+    .footer{
+      padding: 22px 0 38px;
+      color: rgba(166,179,209,.8);
+      text-align:center;
+      border-top: 1px solid var(--line);
+      margin-top: 30px;
+    }
+
+    /* Desktop */
+    @media (min-width: 900px){
+      .nav-links{ display:flex; }
+      .hero{ padding: 70px 0 28px; }
+      .hero-grid{ grid-template-columns: 1.1fr .9fr; gap: 26px; }
+      .hero h1{ font-size: 2.55rem; }
+      .problems{ grid-template-columns: 1fr 1fr; }
+      .features{ grid-template-columns: 1fr 1fr; }
+      .stats{ grid-template-columns: repeat(3, 1fr); }
+      .wa-float span{ display:inline; }
+      .phone-img{ height: 520px; }
+      .slide img{ height: 520px; }
+    }
+
+    /* micro-animations */
+    .pulse{
+      animation: pulse 1.9s infinite;
+    }
+    @keyframes pulse{
+      0%{ box-shadow: 0 0 0 0 rgba(34,197,94,.28); }
+      70%{ box-shadow: 0 0 0 12px rgba(34,197,94,0); }
+      100%{ box-shadow: 0 0 0 0 rgba(34,197,94,0); }
     }
   </style>
 </head>
+
 <body>
 
-  <!-- NAV -->
-  <div class="nav">
-    <div class="container">
-      <div class="nav-inner">
-        <div class="brand">
-          <div class="logo"></div>
-          <div>
-            <div style="font-size:14px;color:var(--muted);font-weight:700;">منصة إدارة الأعمال</div>
-            <div style="font-size:16px;">وكالة ميديا للمصورين والوكالات</div>
-          </div>
-        </div>
+  <!-- Config -->
+  <script>
+    // ✅ عدّل هنا فقط:
+    const SYSTEM_NAME = "عدسة برو";          // اسم النظام المقترح
+    const CITY_LAUNCH = "بريدة";            // المدينة
+    const WHATSAPP_NUMBER = "966XXXXXXXXX"; // رقمك بصيغة دولية بدون +
+  </script>
 
-        <div class="nav-actions">
-          <a class="btn btn-ghost" href="#screens">شاهد النظام</a>
-          <a class="btn btn-primary" href="#contact">اطلب عرضًا</a>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <div id="brandName" style="font-weight:950;line-height:1;">عدسة برو</div>
+          <div style="color:var(--muted);font-weight:800;font-size:.9rem;line-height:1.2;">نظام سحابي للمصورين</div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="container">
-      <div class="hero-grid">
-        <div class="hero-card">
-          <h1>كل حجوزاتك… أرباحك… وفريقك في لوحة واحدة</h1>
-          <p>
-            نظام مصمم خصيصًا للمصورين والوكالات الدعائية لتنظيم الحجوزات،
-            إسناد الأعمال للفريق، تتبع المصروفات، وإصدار الفواتير — بدون تعقيد.
-          </p>
+      <nav class="nav-links">
+        <a href="#problems">المشاكل</a>
+        <a href="#features">المميزات</a>
+        <a href="#gallery">الصور</a>
+        <a href="#faq">الأسئلة</a>
+      </nav>
 
-          <div class="badges">
-            <div class="badge">📅 تقويم حجوزات</div>
-            <div class="badge">👥 أعمال مسندة</div>
-            <div class="badge">💰 مالية وصافي ربح</div>
-            <div class="badge">🎯 مستهدفات</div>
-          </div>
-
-          <div class="hero-cta">
-            <a class="btn btn-white" href="#contact">اطلب عرض النظام الآن</a>
-            <a class="btn btn-outline-white" href="#screens">شاهد لقطات النظام</a>
-          </div>
-
-          <div style="margin-top:14px; position:relative; color:rgba(248,250,252,.9); font-size:13px;">
-            ✅ مناسب للمصور الفردي والاستديو والوكالة — ✅ واجهة عربية — ✅ متجاوب
-          </div>
-        </div>
-
-        <div class="hero-shot">
-          <div class="shot-top">
-            <div>
-              <div class="shot-title">لقطة من لوحة التحكم</div>
-              <div class="shot-sub">مؤشرات فورية: حجوزات • إيرادات • مستحقات • صافي الربح</div>
-            </div>
-          </div>
-          <div class="shot-img">
-            <!-- بدّل اسم الصورة حسب ملفك -->
-            <img src="images/dashboard.png" alt="لوحة التحكم">
-          </div>
-        </div>
+      <div class="nav-actions">
+        <a class="btn btn-ghost" href="#features"><i class="fa-solid fa-bolt"></i> اكتشف</a>
+        <a id="navCta" class="btn btn-primary pulse" href="#"><i class="fa-brands fa-whatsapp"></i> واتساب</a>
       </div>
     </div>
   </header>
 
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="pill" data-aos="fade-down">
+          <i class="fa-solid fa-cloud"></i>
+          <span>يعمل على الجوال + بياناتك على Google</span>
+        </div>
+
+        <h1 data-aos="fade-up">
+          هل تعاني من <span class="accent">لخبطة المواعيد</span>؟<br/>
+          أو تنسى مين سدد <span class="accent">العربون</span> ومين باقي عليه؟
+        </h1>
+
+        <p data-aos="fade-up" data-aos-delay="100">
+          نقدم لكم <b id="sysNameInline"></b>:
+          النظام السحابي المتكامل المصمم خصيصًا للمصورين ووكالات الدعاية لإدارة الحجوزات والمالية والفواتير والتذكيرات — بسهولة وبشكل احترافي.
+        </p>
+
+        <div class="hero-actions" data-aos="fade-up" data-aos-delay="160">
+          <a id="heroCta" class="btn btn-primary" href="#"><i class="fa-brands fa-whatsapp"></i> اطلب نسخة وتجربة</a>
+          <a class="btn btn-ghost" href="#problems"><i class="fa-solid fa-triangle-exclamation"></i> أشوف المشاكل</a>
+        </div>
+      </div>
+
+      <div class="phone" data-aos="zoom-in">
+        <div class="phone-top">
+          <div style="font-weight:900;">لوحة التحكم</div>
+          <div class="dots" aria-hidden="true">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          </div>
+        </div>
+        <!-- ضع صورة واجهة نظامك هنا -->
+        <img class="phone-img" src="images/dashboard.png" alt="واجهة النظام - لوحة التحكم"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMS -->
+  <section id="problems" class="section">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2>المشاكل اللي نحلّها لك</h2>
+        <p>أسئلة مباشرة يمرّ فيها أغلب المصورين يوميًا… وهذا بالضبط سبب بناء النظام.</p>
+      </div>
+
+      <div class="problems">
+        <div class="problem" data-aos="fade-right">
+          <div class="ico"><i class="fa-solid fa-calendar-xmark"></i></div>
+          <div>
+            <h3>تداخل مواعيد الحجوزات (Double Booking)</h3>
+            <p>تعارض وقت/تاريخ بدون ما تنتبه، ويضيع عليك عميل أو تتسبب بإحراج.</p>
+          </div>
+        </div>
+
+        <div class="problem" data-aos="fade-left">
+          <div class="ico"><i class="fa-solid fa-money-bill-wave"></i></div>
+          <div>
+            <h3>مين دفع العربون؟ ومين باقي عليه؟</h3>
+            <p>متابعة يدوية مزعجة… والنتيجة: فلوس ضائعة أو تأخير تحصيل.</p>
+          </div>
+        </div>
+
+        <div class="problem" data-aos="fade-right">
+          <div class="ico"><i class="fa-solid fa-file-invoice"></i></div>
+          <div>
+            <h3>فواتير مرهقة وإرسال يدوي</h3>
+            <p>كل مرة تقعد تكتب فاتورة وتصور وتعيد إرسال… وقتك أهم.</p>
+          </div>
+        </div>
+
+        <div class="problem" data-aos="fade-left">
+          <div class="ico"><i class="fa-solid fa-chart-pie"></i></div>
+          <div>
+            <h3>نهاية الشهر… ما تدري كم ربحك الحقيقي</h3>
+            <p>بعد خصم المصروفات والمصورين والتكاليف… تحتاج رقم واضح لحظيًا.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats" data-aos="fade-up" data-aos-delay="100">
+        <div class="stat">
+          <div class="label">وقت توفير شهريًا</div>
+          <div class="num" data-count="18">0</div>
+        </div>
+        <div class="stat">
+          <div class="label">وضوح التحصيل</div>
+          <div class="num" data-count="100">0</div>
+        </div>
+        <div class="stat">
+          <div class="label">انخفاض الفوضى</div>
+          <div class="num" data-count="75">0</div>
+        </div>
+      </div>
+      <p style="color:var(--muted);margin:10px 0 0;line-height:1.8;font-weight:700" data-aos="fade-up">
+        * الأرقام أعلاه “مؤشرات تسويقية” تقدر تعدلها بما يناسب عرضك.
+      </p>
+    </div>
+  </section>
+
   <!-- FEATURES -->
-  <section>
+  <section id="features" class="section">
     <div class="container">
-      <div class="section-head">
-        <div>
-          <h2>لماذا هذا النظام مناسب للمصورين؟</h2>
-          <p>لأنه يركز على نقاط الألم الحقيقية: الحجز، التحصيل، الصافي، وإدارة الفريق — بدون تشتيت.</p>
+      <div class="section-title" data-aos="fade-up">
+        <h2>✅ مميزات تريح بالك</h2>
+        <p>كل ميزة هنا مبنية لتقفل عليك باب نسيان، وتفتح لك باب تحصيل أسرع وربح أوضح.</p>
+      </div>
+
+      <div class="features">
+        <div class="feature" data-aos="fade-up">
+          <div class="head">
+            <div class="icon"><i class="fa-solid fa-calendar-check"></i></div>
+            <h3>إدارة حجوزات ذكية</h3>
+          </div>
+          <p>سجل الزواجات والتغطيات، تتبع الحالة، ومنع التعارض، ومراجعة القادم والسابق بسهولة.</p>
+        </div>
+
+        <div class="feature" data-aos="fade-up">
+          <div class="head">
+            <div class="icon"><i class="fa-solid fa-sack-dollar"></i></div>
+            <h3>مالية دقيقة لحظة بلحظة</h3>
+          </div>
+          <p>اعرف دخلك، مصروفاتك، وصافي الربح مباشرة، مع احتساب المصروفات الثابتة والنسبية.</p>
+        </div>
+
+        <div class="feature" data-aos="fade-up">
+          <div class="head">
+            <div class="icon"><i class="fa-brands fa-whatsapp"></i></div>
+            <h3>تحصيل أسرع عبر واتساب</h3>
+          </div>
+          <p>أرسل تذكير سداد + رسالة فاتورة + تنبيه قبل الموعد… بضغطة زر.</p>
+        </div>
+
+        <div class="feature" data-aos="fade-up">
+          <div class="head">
+            <div class="icon"><i class="fa-solid fa-users-gear"></i></div>
+            <h3>إدارة فريقك</h3>
+          </div>
+          <p>وزع الحجوزات على المصورين، وتابع المهام المسندة لكل شخص ومواعيدها.</p>
+        </div>
+
+        <div class="feature" data-aos="fade-up">
+          <div class="head">
+            <div class="icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <h3>آمن وسهل</h3>
+          </div>
+          <p>يعمل على جوالك، وبياناتك محفوظة داخل حسابك في Google (Sheets/Calendar حسب ضبطك).</p>
+        </div>
+
+        <div class="feature" data-aos="fade-up">
+          <div class="head">
+            <div class="icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <h3>واجهة بسيطة “تشتغل من أول يوم”</h3>
+          </div>
+          <p>بدون تعقيد.. تبويبات واضحة، كروت ملخص، جداول منظمة، وإجراءات سريعة.</p>
         </div>
       </div>
 
-      <div class="grid-3">
-        <div class="card">
-          <div class="feature">
-            <div class="icon">📅</div>
-            <div>
-              <h3>تقويم حجوزات واضح</h3>
-              <p>عرض شهري/أسبوعي/يومي مع تمييز الحجوزات غير المكتملة.</p>
+      <div style="margin-top:18px" data-aos="zoom-in">
+        <div class="cta">
+          <h2>🚀 عرض خاص للإطلاق في <span id="cityInline"></span></h2>
+          <p>نسخة خاصة + تركيب + تدريب</p>
+          <div class="row">
+            <a id="ctaMain" class="btn btn-primary" href="#"><i class="fa-brands fa-whatsapp"></i> تواصل واتساب الآن</a>
+            <a class="btn btn-ghost" href="#gallery"><i class="fa-solid fa-images"></i> شوف صور النظام</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="section">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2>صور من النظام</h2>
+        <p>بدّل الصور بحسب واجهة نظامك. مجرد ضع ملفاتك داخل مجلد <b>images</b> بنفس الأسماء.</p>
+      </div>
+
+      <div class="gallery" data-aos="zoom-in">
+        <div class="slides" id="slides">
+          <div class="slide">
+            <img src="images/dashboard.png" alt="لوحة التحكم">
+            <div class="cap">
+              <h4>لوحة التحكم</h4>
+              <p>ملخص سريع: حجوزات قادمة، تحصيل، وصافي الربح.</p>
+            </div>
+          </div>
+          <div class="slide">
+            <img src="images/calendar.png" alt="التقويم والحجوزات">
+            <div class="cap">
+              <h4>التقويم والحجوزات</h4>
+              <p>عرض يومي/شهري مع تفاصيل الحجز وحالته.</p>
+            </div>
+          </div>
+          <div class="slide">
+            <img src="images/finance.png" alt="المالية والتقارير">
+            <div class="cap">
+              <h4>المالية</h4>
+              <p>مصروفات + دخل + صافي ربح واضح.</p>
+            </div>
+          </div>
+          <div class="slide">
+            <img src="images/team.png" alt="إدارة الفريق">
+            <div class="cap">
+              <h4>إدارة الفريق</h4>
+              <p>إسناد الحجوزات ومتابعة المهام المسندة.</p>
             </div>
           </div>
         </div>
 
-        <div class="card">
-          <div class="feature">
-            <div class="icon">👥</div>
-            <div>
-              <h3>إسناد الأعمال للفريق</h3>
-              <p>كل حجز يُسند لموظف ويظهر له ضمن “الأعمال المسندة لي”.</p>
-            </div>
+        <div class="g-controls" aria-hidden="false">
+          <div class="g-btn g-prev" id="prevBtn" title="السابق"><i class="fa-solid fa-chevron-left"></i></div>
+          <div class="g-btn g-next" id="nextBtn" title="التالي"><i class="fa-solid fa-chevron-right"></i></div>
+        </div>
+
+        <div class="dotsbar" id="dots"></div>
+      </div>
+
+      <p style="color:var(--muted);margin-top:12px;line-height:1.9;font-weight:700" data-aos="fade-up">
+        أسماء الصور المطلوبة داخل <b>images/</b>:
+        <br>dashboard.png — calendar.png — finance.png — team.png
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2>أسئلة شائعة</h2>
+        <p>خلّينا نقفل أي نقطة قبل التواصل.</p>
+      </div>
+
+      <div class="faq" data-aos="fade-up">
+        <details>
+          <summary><span class="q">هل يشتغل على الجوال؟</span><span class="ic"><i class="fa-solid fa-chevron-down"></i></span></summary>
+          <p>نعم، تصميمه مهيأ للجوال، وتقدر تتابع الحجوزات والتحصيل بسرعة من أي مكان.</p>
+        </details>
+
+        <details>
+          <summary><span class="q">هل البيانات تكون عندي؟</span><span class="ic"><i class="fa-solid fa-chevron-down"></i></span></summary>
+          <p>الفكرة الأساسية: بياناتك محفوظة على حسابك في Google (حسب إعدادات النظام)، وهذا يعطيك أمان وملكية كاملة.</p>
+        </details>
+
+        <details>
+          <summary><span class="q">هل أقدر أضيف موظفين وإسناد حجوزات؟</span><span class="ic"><i class="fa-solid fa-chevron-down"></i></span></summary>
+          <p>نعم، تقدر تضيف مستخدمين بصلاحيات، وتُسند لهم الحجوزات وتتابع المهام المسندة لهم.</p>
+        </details>
+
+        <details>
+          <summary><span class="q">هل فيه فواتير وتذكير واتساب؟</span><span class="ic"><i class="fa-solid fa-chevron-down"></i></span></summary>
+          <p>نعم، قوالب رسائل جاهزة (فاتورة/تذكير)، وتقدر ترسل عبر واتساب بشكل سريع.</p>
+        </details>
+      </div>
+
+      <div style="margin-top:18px" data-aos="zoom-in">
+        <div class="cta">
+          <h2>جاهز ترتّب شغلك وتوقف الفوضى؟</h2>
+          <p>راسلنا على واتساب وخلك على أول خطوة.</p>
+          <div class="row">
+            <a id="ctaBottom" class="btn btn-primary" href="#"><i class="fa-brands fa-whatsapp"></i> واتساب الآن</a>
+            <a class="btn btn-ghost" href="#problems"><i class="fa-solid fa-circle-question"></i> أرجع للمشاكل</a>
           </div>
         </div>
-
-        <div class="card">
-          <div class="feature">
-            <div class="icon">💰</div>
-            <div>
-              <h3>مالية وصافي ربح تلقائي</h3>
-              <p>إيرادات + مصروفات عامة ومصروفات الحجوزات + صافي ربح واضح.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- SCREENSHOTS -->
-  <section id="screens">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2>شاهد النظام كما هو</h2>
-          <p>لقطات فعلية من الواجهة: لوحة التحكم، التقويم، المصروفات، والمستهدفات.</p>
-        </div>
-      </div>
-
-      <div class="grid-2">
-        <div class="card shot-card">
-          <h3>التقويم وإدارة الحجوزات</h3>
-          <p>عرض الحجوزات على الشهر مع تمييز الحالات والألوان.</p>
-          <img src="images/calendar.png" alt="التقويم">
-        </div>
-
-        <div class="card shot-card">
-          <h3>المصروفات والفلترة والتقارير</h3>
-          <p>مصروفات عامة + مصروفات الحجوزات + غير مكتملة السداد، مع تصدير CSV.</p>
-          <img src="images/expenses.png" alt="المصروفات">
-        </div>
-
-        <div class="card shot-card">
-          <h3>المستهدفات والمتابعة</h3>
-          <p>مستهدف شهري/سنوي ونسبة إنجاز تساعدك تقود شغلك بالأرقام.</p>
-          <img src="images/targets.png" alt="المستهدفات">
-        </div>
-
-        <div class="card shot-card">
-          <h3>لوحة التحكم (تفاصيل)</h3>
-          <p>ملخص سريع: الحجوزات، الإيرادات، المستحقات، وصافي الربح.</p>
-          <img src="images/dashboard.png" alt="لوحة التحكم">
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- WHO FOR -->
-  <section>
+  <footer class="footer">
     <div class="container">
-      <div class="section-head">
-        <div>
-          <h2>لمن هذه المنصة؟</h2>
-          <p>مناسبة لكل من يريد تحويل التصوير إلى “عمل منظم” بدل مجهود متفرق.</p>
-        </div>
-      </div>
-
-      <div class="grid-3">
-        <div class="card"><strong>📸 مصور مستقل</strong><div style="color:var(--muted);font-size:13.5px;margin-top:6px;">نظم حجوزاتك وتحصيلك وصافي ربحك.</div></div>
-        <div class="card"><strong>🏢 استديو تصوير</strong><div style="color:var(--muted);font-size:13.5px;margin-top:6px;">تابع الفريق والأعمال اليومية بوضوح.</div></div>
-        <div class="card"><strong>🎬 وكالة دعائية</strong><div style="color:var(--muted);font-size:13.5px;margin-top:6px;">تحكم بالمشاريع والمصروفات والمستهدفات.</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section id="contact">
-    <div class="container">
-      <div class="cta">
-        <div>
-          <strong>جاهز تنقل شغلك لمستوى احترافي؟</strong>
-          <span>اطلب عرضًا سريعًا للنظام + إعداد مبدئي يناسب عملك (مصور/استديو/وكالة).</span>
-        </div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <!-- عدّل روابط التواصل -->
-          <a class="btn btn-primary" href="https://wa.me/9665XXXXXXXX" target="_blank" rel="noopener">تواصل واتساب</a>
-          <a class="btn btn-ghost" href="mailto:hello@example.com">إرسال بريد</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <div class="footer-row">
-        <div>© <span id="y"></span> وكالة ميديا — جميع الحقوق محفوظة</div>
-        <div>صُنِع للمصورين والوكالات 🇸🇦</div>
-      </div>
+      <div style="font-weight:900;color:rgba(234,240,255,.9)" id="footerName">عدسة برو</div>
+      <div style="margin-top:6px">© جميع الحقوق محفوظة</div>
     </div>
   </footer>
 
+  <!-- WhatsApp Floating -->
+  <a id="waFloat" class="wa-float" href="#" target="_blank" rel="noopener">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span>تواصل واتساب</span>
+  </a>
+
+  <!-- AOS -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
   <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
+    // Init AOS
+    AOS.init({ duration: 900, once: true, offset: 70 });
+
+    // Inject names
+    const brandName = document.getElementById('brandName');
+    const sysNameInline = document.getElementById('sysNameInline');
+    const footerName = document.getElementById('footerName');
+    const cityInline = document.getElementById('cityInline');
+
+    brandName.textContent = SYSTEM_NAME;
+    sysNameInline.textContent = SYSTEM_NAME;
+    footerName.textContent = SYSTEM_NAME;
+    cityInline.textContent = CITY_LAUNCH;
+
+    // WhatsApp link builder
+    function buildWhatsAppLink() {
+      const msg =
+        `السلام عليكم، أبغى نسخة من نظام ${SYSTEM_NAME} للمصورين. ` +
+        `أبغى تفاصيل (التركيب + التدريب) في ${CITY_LAUNCH}.`;
+      return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+    }
+
+    const waLink = buildWhatsAppLink();
+    document.getElementById('navCta').href = waLink;
+    document.getElementById('heroCta').href = waLink;
+    document.getElementById('ctaMain').href = waLink;
+    document.getElementById('ctaBottom').href = waLink;
+    document.getElementById('waFloat').href = waLink;
+
+    // Counter animation (when visible)
+    const counters = document.querySelectorAll('[data-count]');
+    let counted = false;
+
+    function animateCounters() {
+      if (counted) return;
+      const statsSection = document.getElementById('problems');
+      const rect = statsSection.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight - 120;
+
+      if (!inView) return;
+      counted = true;
+
+      counters.forEach(el => {
+        const target = parseInt(el.getAttribute('data-count'), 10);
+        const duration = 900;
+        const start = performance.now();
+        function tick(now) {
+          const p = Math.min((now - start) / duration, 1);
+          const val = Math.floor(p * target);
+          el.textContent = val + (target === 100 ? "%" : "+");
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      });
+    }
+    window.addEventListener('scroll', animateCounters, { passive: true });
+    animateCounters();
+
+    // Gallery slider
+    const slides = document.getElementById('slides');
+    const slideCount = slides.children.length;
+    const dots = document.getElementById('dots');
+    let idx = 0;
+    let autoTimer = null;
+
+    function renderDots() {
+      dots.innerHTML = "";
+      for (let i = 0; i < slideCount; i++) {
+        const d = document.createElement('div');
+        d.className = 'gd' + (i === idx ? ' active' : '');
+        d.addEventListener('click', () => goTo(i));
+        dots.appendChild(d);
+      }
+    }
+
+    function goTo(i) {
+      idx = (i + slideCount) % slideCount;
+      slides.style.transform = `translateX(${idx * 100}%)`;
+      // لأننا RTL نحتاج انعكاس الاتجاه
+      slides.style.transform = `translateX(${idx * 100}%)`;
+      // حل RTL: نستخدم translateX موجب مع flex الافتراضي؛
+      // عشان يكون صحيح دائمًا، نخلي direction لليسار داخل slider
+      renderDots();
+      resetAuto();
+    }
+
+    // RTL fix: نجعل الـ slides يسير LTR داخل الحاوية
+    slides.style.direction = 'ltr';
+
+    document.getElementById('prevBtn').addEventListener('click', () => goTo(idx - 1));
+    document.getElementById('nextBtn').addEventListener('click', () => goTo(idx + 1));
+
+    function startAuto() {
+      autoTimer = setInterval(() => goTo(idx + 1), 4500);
+    }
+    function resetAuto() {
+      if (autoTimer) clearInterval(autoTimer);
+      startAuto();
+    }
+
+    renderDots();
+    goTo(0);
+    startAuto();
   </script>
+
 </body>
 </html>
